@@ -1,0 +1,137 @@
+{
+  "targets": [
+    {
+      "id": "example-blog",
+      "name": "示例博客文章",
+      "type": "page",
+      "enabled": false,
+      "notebook": "",
+      "path": "/采集/博客",
+      "pipeline": "web-clean",
+      "request": {
+        "url": "https://example.com/article/123",
+        "headers": {},
+        "cookies": ""
+      },
+      "selectors": {
+        "title": "h1.article-title",
+        "content": "article.post-body",
+        "author": ".author-name",
+        "date": "time[datetime]",
+        "exclude": [".share-buttons", ".related-posts", ".ad-container"]
+      },
+      "turndown": {
+        "headingStyle": "atx",
+        "codeBlockStyle": "fenced",
+        "bulletListMarker": "-"
+      }
+    },
+    {
+      "id": "example-list",
+      "name": "示例文章列表",
+      "type": "list",
+      "enabled": false,
+      "notebook": "",
+      "path": "/采集/列表",
+      "pipeline": "web-clean",
+      "request": {
+        "urls": [
+          "https://example.com/post/1",
+          "https://example.com/post/2"
+        ],
+        "headers": {}
+      },
+      "selectors": {
+        "title": "h1",
+        "content": ".post-content",
+        "author": ".byline",
+        "date": ".publish-date"
+      }
+    },
+    {
+      "id": "example-paginated",
+      "name": "示例分页爬取",
+      "type": "paginated",
+      "enabled": false,
+      "notebook": "",
+      "path": "/采集/归档",
+      "pipeline": "web-clean",
+      "request": {
+        "baseUrl": "https://example.com/blog/page/{page}",
+        "headers": {}
+      },
+      "pagination": {
+        "type": "url-template",
+        "startPage": 1,
+        "maxPages": 10,
+        "stopCondition": {
+          "type": "empty-content",
+          "selector": ".post-item"
+        }
+      },
+      "listSelectors": {
+        "itemSelector": ".post-item a.post-link",
+        "titleSelector": ".post-title",
+        "linkSelector": "a[href]"
+      },
+      "selectors": {
+        "title": "h1",
+        "content": ".post-body",
+        "author": ".author",
+        "date": ".date"
+      }
+    },
+    {
+      "id": "example-next-page",
+      "name": "示例下一页翻页",
+      "type": "paginated",
+      "enabled": false,
+      "notebook": "",
+      "path": "/采集/翻页",
+      "pipeline": "web-clean",
+      "request": {
+        "baseUrl": "https://example.com/articles"
+      },
+      "pagination": {
+        "type": "next-page",
+        "nextSelector": "a.next-page",
+        "maxPages": 50,
+        "stopCondition": {
+          "type": "no-next-link"
+        }
+      },
+      "listSelectors": {
+        "itemSelector": "article.list-item",
+        "linkSelector": "h2 a"
+      },
+      "selectors": {
+        "title": "h1.article-title",
+        "content": ".article-content",
+        "date": "time"
+      }
+    },
+    {
+      "id": "example-rss",
+      "name": "示例 RSS 订阅",
+      "type": "rss",
+      "enabled": false,
+      "notebook": "",
+      "path": "/采集/RSS",
+      "pipeline": "web-clean",
+      "request": {
+        "url": "https://example.com/feed.xml",
+        "headers": {}
+      },
+      "rssOptions": {
+        "maxItems": 20,
+        "sinceDays": 7,
+        "fetchFullContent": true,
+        "contentSelector": "article.main"
+      },
+      "selectors": {
+        "content": "article",
+        "exclude": [".share", ".related"]
+      }
+    }
+  ]
+}

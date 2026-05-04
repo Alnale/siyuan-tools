@@ -1,0 +1,19 @@
+{
+  "name": "siyuan-tools",
+  "version": "1.0.0",
+  "description": "思源笔记工具集 — 导入/爬虫 CLI + Python GUI 转换器",
+  "main": "import.js",
+  "scripts": {
+    "import": "node import.js",
+    "crawl": "node crawler.js",
+    "converter": "cd converter && python main.py"
+  },
+  "keywords": ["siyuan", "markdown", "crawler", "import"],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "dependencies": {
+    "cheerio": "^1.2.0",
+    "turndown": "^7.2.4"
+  }
+}

@@ -1,0 +1,40 @@
+{
+  "permissions": {
+    "allow": [
+      "WebSearch",
+      "WebFetch(domain:raw.githubusercontent.com)",
+      "WebFetch(domain:pypi.org)",
+      "Bash(curl -sL *)",
+      "Bash(git *)",
+      "Bash(npm init *)",
+      "Bash(npm i *)",
+      "Bash(npm install *)",
+      "Bash(node *)",
+      "Bash(MSYS_NO_PATHCONV=1 node *)",
+      "Bash(python *)",
+      "Bash(pip *)",
+      "Bash(pandoc *)",
+      "Bash(mkdir *)",
+      "Bash(tasklist)",
+      "Bash(gh pr *)",
+      "Read(//c/Users/asus/Desktop/Claude Code/**)",
+      "Read(//tmp/**)",
+      "Bash(echo \"Test\")",
+      "Bash(rm -f /tmp/test_pandoc.md /tmp/test_out.md)",
+      "Bash(rm -rf /tmp/test_media_out)",
+      "Bash(python3 -m py_compile core/worker.py)",
+      "Bash(python3 -m py_compile core/pdf_converter.py)",
+      "Bash(python3 -m py_compile gui/preview_panel.py)",
+      "Bash(python3 -m py_compile gui/main_window.py)",
+      "Bash(python3 -m py_compile gui/styles.py)",
+      "Bash(python3 -m py_compile gui/drop_zone.py)",
+      "Bash(gh auth *)",
+      "Bash(winget install *)",
+      "Bash(powershell.exe *)",
+      "Read(//c/Users/asus/**)",
+      "Bash(grep -n '```' \"C:/tmp/test_code/output.md\")",
+      "Bash(grep *)",
+      "WebFetch(domain:github.com)"
+    ]
+  }
+}

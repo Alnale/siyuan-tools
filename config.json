@@ -1,0 +1,89 @@
+{
+  "users": {
+    "local": {
+      "name": "本机用户",
+      "endpoint": "http://127.0.0.1:6806",
+      "token": "YOUR_API_TOKEN",
+      "defaultNotebook": "YOUR_NOTEBOOK_ID"
+    }
+  },
+  "defaultUser": "local",
+  "import": {
+    "defaultPath": "/your_path",
+    "defaultPipeline": "",
+    "overwrite": false,
+    "supportedExtensions": [".md", ".txt", ".markdown"]
+  },
+  "textProcess": {
+    "normalizeNewlines": true,
+    "trimTrailingSpaces": true,
+    "latexDisplay": true,
+    "latexInline": true,
+    "latexDisplayToInline": false,
+    "removeNewlines": false,
+    "removeSpaces": false,
+    "removeEmptyLines": false,
+    "addEmptyLines": false,
+    "enToCnPunctuation": false,
+    "cnToEnPunctuation": false,
+    "fullwidthToHalfwidth": false,
+    "halfwidthToFullwidth": false,
+    "autoLink": false,
+    "removeLinks": false,
+    "removeSuperscript": false,
+    "removeHtmlTags": false,
+    "removeImages": false,
+    "normalizeDashes": false,
+    "headingLevelShift": 0,
+    "listBulletConvert": false,
+    "checkboxNormalize": false,
+    "codeBlockNormalize": false
+  },
+  "pipelines": {
+    "pdf-clean": {
+      "name": "PDF 文本清理",
+      "description": "清理从 PDF 复制的多余换行、空格和特殊字符",
+      "rules": ["normalize_newlines", "trim_trailing_spaces", "remove_newlines", "remove_spaces", "remove_empty_lines"]
+    },
+    "web-paste": {
+      "name": "网页粘贴清理",
+      "description": "清理从网页粘贴的链接、上标和 HTML 标签",
+      "rules": ["normalize_newlines", "trim_trailing_spaces", "remove_superscript", "remove_links", "remove_html_links", "auto_link"]
+    },
+    "formula": {
+      "name": "公式转换",
+      "description": "仅进行 LaTeX 公式格式转换",
+      "rules": ["latex_display", "latex_inline"]
+    },
+    "full-clean": {
+      "name": "全面清理",
+      "description": "全面清理文本（去空格、标点转换、去链接、公式转换）",
+      "rules": ["normalize_newlines", "trim_trailing_spaces", "remove_spaces", "remove_empty_lines", "latex_display", "latex_inline", "en_to_cn_punctuation", "remove_superscript", "remove_links", "list_bullet_convert"]
+    },
+    "academic": {
+      "name": "学术论文",
+      "description": "学术论文导入（公式转换 + 去上标 + 清理空白）",
+      "rules": ["normalize_newlines", "trim_trailing_spaces", "latex_display", "latex_inline", "remove_superscript", "remove_spaces", "heading_level_adjust"]
+    },
+    "web-clean": {
+      "name": "网页采集清理",
+      "description": "清理网页抓取内容（规范空白、公式转换、自动链接）",
+      "rules": ["normalize_newlines", "trim_trailing_spaces", "remove_empty_lines", "latex_display", "latex_inline", "auto_link"]
+    }
+  },
+  "crawler": {
+    "userAgent": "SiYuanCrawler/1.0",
+    "requestDelay": 2000,
+    "maxConcurrent": 3,
+    "timeout": 30000,
+    "maxRetries": 3,
+    "retryDelay": 5000,
+    "defaultPipeline": "web-clean",
+    "defaultNotebook": "YOUR_NOTEBOOK_ID",
+    "defaultPath": "/网页采集",
+    "htmlCleanup": {
+      "removeSelectors": ["nav", "footer", "header", ".sidebar", ".ad", ".advertisement", "#comments", ".cookie-banner", ".share-buttons"],
+      "removeTags": ["script", "style", "noscript", "iframe"]
+    }
+  }
+}
